@@ -15,53 +15,16 @@ const [
     require("net"),
 ];
 
-const {host, port, version, eui, key} = require(resolve("config", "index.json"));
+const {host, port} = require(resolve(__dirname, "config", "index.json"));
 
 const client = new Socket();
-const nonce = 1234;
-const challenge= "ABCDEF1234567890ABCDEF1234567890";
-
-const buildMsgHeader = (len = 0) => {
-    const beginBuf = Buffer.from("0A", "hex");
-    const versionBuf = Buffer.from(version, "hex");
-    len = len.toString(16);
-    while (len.length < 4) {
-        len = "0" + len;
-    }
-    const lenBuf = Buffer.from(len, "hex");
-    return Buffer.concat([beginBuf, versionBuf, lenBuf]);
-};
-
-const packageMsg = (cmd = {}) => {
-    const _cmd = JSON.stringify(cmd);
-    const len = _cmd.length + 1;
-
-    const headerBuf = buildMsgHeader(len);
-    const contentBuf = Buffer.from(_cmd);
-    return Buffer.concat([headerBuf, contentBuf, Buffer.alloc(1)]);
-};
-
-/**
- * 发送join 包
- *
- */
-const sendJoin = () => {
-    const join = {
-        cmd: "join",
-        cmdseq: 1,
-        appeui: eui,
-        appnonce: nonce,
-        challenge
-    };
-
-    console.log(`[${new Date()}][INFO]: SEND MSG ${JSON.stringify(join)}`);
-    client.write(packageMsg(join));
-    console.log(`[${new Date()}][INFO]: SEND MSG END.`);
-};
 
 client.connect(port, host, () => {
     console.log(`[${new Date()}][INFO]: CONNECTED TO ${host}:${port}`);
-    sendJoin();
+    require(resolve(__dirname, "lib")).initLib(client);
+    // const lib = require(resolve(__dirname, "lib"));
+    // lib.initLib(client);
+    // lib.send({cmd: "join", cmdseq: 1,});
 });
 
 client.on("data", data => {
