@@ -12,20 +12,24 @@ const [
     CMDChain,
     joinAck,
     heartBeat,
+    updata,
 ] = [
     require(resolve(__dirname, "cmdChain")),
     require(resolve(__dirname, "joinAck")),
     require(resolve(__dirname, "heartBeat")),
+    require(resolve(__dirname, "updata"))
 ];
-let beginRequest, network;
+let beginRequest, network, pluginAnalysis;
 
 const receiveMsg = _ => {
- // 职责链模式 -- 待实现
     const result = beginRequest.passRequest(_, CMDChain.next);
     try {
-        const {send, cmd} = result;
+        const {send, cmd, analysis} = result;
         if (send) {
             network(cmd);
+        }
+        if (analysis) {
+            pluginAnalysis(cmd);
         }
     } catch (exception) {
 
@@ -36,13 +40,17 @@ const defaultDisFun = cmd => {
     console.log(`[${new Date()}][INFO][cmdDisCenter]: receive unknow robo cmd. ${JSON.stringify(cmd)}`);
 };
 
-// 注册分析模块
-const initModule = (config, cmdNetwork) => {
-    if (cmdNetwork && cmdNetwork instanceof Function) {
-        network = cmdNetwork;
+// LORA 命令解析模块
+const initModule = (config, {send, analysis}) => {
+    if (send && send instanceof Function) {
+        network = send;
+    }
+    if (analysis && analysis instanceof Function) {
+        pluginAnalysis = analysis;
     }
     beginRequest = new CMDChain(joinAck);
     beginRequest.setNextSuccessor(new CMDChain(heartBeat))
+        .setNextSuccessor(new CMDChain(updata))
         .setNextSuccessor(new CMDChain(defaultDisFun));
 };
 

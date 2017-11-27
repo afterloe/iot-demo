@@ -18,10 +18,12 @@ const [
 const [
     {host, port},
     {receiveMsg, registerModule},
-    {initLib, send, unPackage}
+    {analysis},
+    {initLib, send, unPackage},
 ] = [
     require(resolve(__dirname, "config", "index.json")),
     require(resolve(__dirname, "cmdDisCenter")),
+    require(resolve(__dirname, "dataCenter")),
     require(resolve(__dirname, "lib"))
 ];
 const client = new Socket();
@@ -29,7 +31,7 @@ const client = new Socket();
 client.connect(port, host, () => {
     console.log(`[${new Date()}][INFO]: CONNECTED TO ${host}:${port}`);
     initLib(client);
-    registerModule(resolve(__dirname, "config", "index.json"), send);
+    registerModule(resolve(__dirname, "config", "index.json"), {send, analysis});
     send({cmd: "join", cmdseq: 1,});
 });
 
