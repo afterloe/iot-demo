@@ -16,19 +16,18 @@ const [
 ];
 
 const {host, port} = require(resolve(__dirname, "config", "index.json"));
-
+let lib;
 const client = new Socket();
 
 client.connect(port, host, () => {
     console.log(`[${new Date()}][INFO]: CONNECTED TO ${host}:${port}`);
-    require(resolve(__dirname, "lib")).initLib(client);
-    // const lib = require(resolve(__dirname, "lib"));
-    // lib.initLib(client);
-    // lib.send({cmd: "join", cmdseq: 1,});
+    lib = require(resolve(__dirname, "lib"));
+    lib.initLib(client);
+    lib.send({cmd: "join", cmdseq: 1,});
 });
 
 client.on("data", data => {
-    console.log(`[${new Date()}][INFO]: ${data}`);
+    lib.receive(data);
 });
 
 client.on("close", () => {

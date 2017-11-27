@@ -13,6 +13,7 @@ if (IS_CHALLENGE) {
     APP_EUI = '2c26c50526000002';  // 需要计算Challenge
 } else {
     APP_EUI = '2c26c50526000001';
+    // APP_EUI = '2c26c50065651004';
 }
 const APP_KEY = '00112233445566778899aabbccddeeff';
 
@@ -20,6 +21,11 @@ const CAP_DEV_EUI = '004A77006E00003C';
 const MANGET_DEV_EUI = '004A770066002C74';
 const T_DEV_EUI = '004A7702110600DD';
 const VER = '0102';
+
+const CAP_DEV_EUI_L = CAP_DEV_EUI.toLocaleLowerCase();
+const MANGET_DEV_EUI_L = MANGET_DEV_EUI.toLocaleLowerCase();
+const T_DEV_EUI_L = T_DEV_EUI.toLocaleLowerCase();
+
 
 // console.log(JSON.stringify(crypto.getCiphers(), null, 2));
 
@@ -34,6 +40,9 @@ function numberToHex(num, length, fill = '0') {
     return numberHex;
 }
 
+function base64(data) {
+
+}
 
 const LORA_OPT = {
     host: HOST,
@@ -63,10 +72,9 @@ class Lora extends EventEmitter {
             let register = {
                 "cmd": "join",
                 "appeui": _this.APP_EUI,
-                "appnonce": _this.getAppNonce(),
-                "challenge": "ABCDEF1234567890ABCDEF1234567890"
+                "appnonce": _this.getAppNonce()
             };
-            // register.challenge = _this.challenge(register.appnonce);
+            register.challenge = _this.challenge(register.appnonce);
             _this.send(_this.pack(register));
         });
 
@@ -169,6 +177,7 @@ class Lora extends EventEmitter {
     unpack(buf) {
         if (buf[0] !== 0x0A) {
             console.log('数据包不是已0A开头');
+            return;
         }
         let len = (buf[3] << 8) + buf[4];
         let dataBuf = Buffer.alloc(len - 1);
@@ -207,16 +216,16 @@ class Lora extends EventEmitter {
         this.unpack(buf);
     }
 
-    sendTo(devEUI, payload, confirm = true, port = 10) {
+    sendTo(devEUI, payloadBuf, port = 10, confirm = true) {
         let data = {
             "cmd": "sendto",
             "deveui": devEUI,
             "confirm": confirm,
-            "payload": payload,
+            "payload": payloadBuf.toString('base64'),
             "port": port
         };
 
-        this.send(data);
+        this.send(this.pack(data));
     }
 }
 
@@ -224,3 +233,35 @@ let lora = new Lora(LORA_OPT);
 lora.connect();
 
 lora.on('join_ack', console.log);
+
+
+lora.on('updata', function (data) {
+    console.log('\n******** UPDATE ********');
+    if (CAP_DEV_EUI_L.indexOf(data.deveui) !== -1) {
+        console.log('收到井盖数据:');
+
+    } else if (MANGET_DEV_EUI_L.indexOf(data.deveui) !== -1) {
+        console.log('收到地磁数据:');
+
+    } else if (T_DEV_EUI_L.indexOf(data.deveui) !== -1) {
+        console.log('收到温湿度数据:');
+
+    } else {
+        console.log('收到其它传感器数据: ' + data.deveui);
+
+    }
+
+    if (data.payload) {
+        console.log('payload');
+        console.log(Buffer.from(data.payload, 'base64').toString('hex'));
+    } else {
+        console.log('payload is null');
+
+    }
+    console.log('\n******** UPDATE END ********\n');
+});
+
+setTimeout(function () {
+    let payload = 'A52400';
+    // lora.sendTo(CAP_DEV_EUI, Buffer.from(payload, 'hex'), 2);
+}, 2000);

@@ -14,32 +14,58 @@ const [
 ];
 
 const [
-    generatorChallenge,
-    generatorHeader,
-    generatorPackage,
+    generatorChallenge,  // 生成校验数字
+    generatorHeader,    // 生成报文头部
+    generatorPackage,   // 打包
+    upPackage,          // 解包
 ] = [
     require(resolve(__dirname, "generatorChallenge")),
     require(resolve(__dirname, "generatorHeader")),
-    require(resolve(__dirname, "generatorPackage"))
+    require(resolve(__dirname, "generatorPackage")),
+    require(resolve(__dirname, "upPackage")),
 ];
 
-let client;
+let client; // 发送对象
 
+/**
+ *  初始化工具包
+ *
+ * @param __client
+ */
 const initLib = __client => {
     client = __client;
 };
 
-const send = (__json = {}) => {
+/**
+ * 发送 指令
+ *
+ * @param cmd 指令对象
+ */
+const send = (cmd = {}) => {
     const challenge = generatorChallenge();
-    Object.assign(__json, challenge);
-    console.log(`[${new Date()}][INFO]: SEND MSG ${JSON.stringify(__json)}`);
-    const headerBuf = generatorHeader(__json);
+    Object.assign(cmd, challenge);
+    console.log(`[${new Date()}][INFO]: SEND MSG ${JSON.stringify(cmd)}`);
+    const headerBuf = generatorHeader(cmd);
     if (!client) {
         throw new Error("lib didn't init.");
     }
-    client.write(generatorPackage(__json, headerBuf));
+    client.write(generatorPackage(cmd, headerBuf));
 };
 
-const _ = {initLib, send};
+/**
+ * 接受响应包
+ *
+ * @param data
+ */
+const receive = data => {
+    if (!data) {
+        return ;
+    }
+
+    data = upPackage(data);
+    console.log(`[${new Date()}][INFO]: RECEIVE MSG ${JSON.stringify(data)}`);
+};
+
+const _ = {initLib, send, receive};
 
 module.exports = _ ;

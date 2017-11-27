@@ -7,8 +7,8 @@
  */
 "use strict";
 
-module.exports = (cmd = {}, headerBuf = Buffer.from("")) => {
-    const contentBuf = Buffer.from(JSON.stringify(cmd));
+module.exports = (json = {}, headerBuf = Buffer.from("")) => {
+    const contentBuf = Buffer.from(JSON.stringify(json));
     const buf = Buffer.concat([headerBuf, contentBuf, Buffer.alloc(1)]);
     // console.log(`[${new Date()}][INFO]: SEND ${buf.toString("hex")}`);
     return buf;
