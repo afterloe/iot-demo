@@ -11,7 +11,7 @@ const CMD = "heartbeat";
 const CMD_CALLBACK = "heartbeat_ack";
 const NEXT_SUCCESSOR = "nextSuccessor";
 
-const _ = (_, next) => {
+const _ = _ => {
 
     const {cmd} = _ ;
 

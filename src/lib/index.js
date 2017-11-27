@@ -44,7 +44,7 @@ const initLib = __client => {
 const send = (cmd = {}) => {
     const challenge = generatorChallenge();
     Object.assign(cmd, challenge);
-    console.log(`[${new Date()}][INFO]: SEND MSG ${JSON.stringify(cmd)}`);
+    console.log(`[${new Date()}][INFO][lib]: SEND MSG ${JSON.stringify(cmd)}`);
     const headerBuf = generatorHeader(cmd);
     if (!client) {
         throw new Error("lib didn't init.");
@@ -53,7 +53,7 @@ const send = (cmd = {}) => {
 };
 
 /**
- * 接受响应包
+ * 解包
  *
  * @param data
  */
@@ -63,7 +63,7 @@ const unPackage = data => {
     }
 
     data = upPackage(data);
-    console.log(`[${new Date()}][INFO]: RECEIVE MSG ${JSON.stringify(data)}`);
+    console.log(`[${new Date()}][INFO][lib]: RECEIVE REMOTE MSG.`);
     return data;
 };
 

@@ -10,8 +10,8 @@
 const CMD = "join_ack";
 const NEXT_SUCCESSOR = "nextSuccessor";
 
-const _ = (_, next) => {
-    const {cmd} = _ ;
+const _ = _ => {
+    const {cmd} = _;
 
     if (CMD !== cmd) {
         return NEXT_SUCCESSOR;
