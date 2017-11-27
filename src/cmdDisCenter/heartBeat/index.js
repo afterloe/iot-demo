@@ -9,12 +9,14 @@
 
 const CMD = "heartbeat";
 const CMD_CALLBACK = "heartbeat_ack";
+const NEXT_SUCCESSOR = "nextSuccessor";
 
 const _ = (_, next) => {
+
     const {cmd} = _ ;
 
     if (CMD !== cmd) {
-        return next;
+        return NEXT_SUCCESSOR;
     }
 
     return {
@@ -24,3 +26,5 @@ const _ = (_, next) => {
         }
     };
 };
+
+module.exports = _ ;

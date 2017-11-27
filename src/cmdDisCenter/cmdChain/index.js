@@ -20,10 +20,11 @@ module.exports = class CmdChain {
   }
 
   setNextSuccessor(successor) {
-      return this.successor = successor;
+      this.successor = successor;
+      return successor;
   }
 
-  static next() {
+  static nextSuccessor() {
       return NEXT_SUCCESSOR;
   }
 

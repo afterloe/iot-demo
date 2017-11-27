@@ -11,9 +11,11 @@ const {resolve} = require("path");
 const [
     CMDChain,
     joinAck,
+    heartBeat,
 ] = [
     require(resolve(__dirname, "cmdChain")),
     require(resolve(__dirname, "joinAck")),
+    require(resolve(__dirname, "heartBeat")),
 ];
 let beginRequest, network;
 
@@ -40,7 +42,8 @@ const initModule = (config, cmdNetwork) => {
         network = cmdNetwork;
     }
     beginRequest = new CMDChain(joinAck);
-    beginRequest.setNextSuccessor(new CMDChain(defaultDisFun));
+    beginRequest.setNextSuccessor(new CMDChain(heartBeat))
+        .setNextSuccessor(new CMDChain(defaultDisFun));
 };
 
 const _ = {
