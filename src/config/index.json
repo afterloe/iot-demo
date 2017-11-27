@@ -1,0 +1,7 @@
+{
+  "host": "msp02.claaiot.com",
+  "port": 30003,
+  "eui": "2c26c50526000001",
+  "key": "00112233445566778899aabbccddeeff",
+  "version": "0102"
+}
