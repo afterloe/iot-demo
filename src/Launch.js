@@ -15,19 +15,26 @@ const [
     require("net"),
 ];
 
-const {host, port} = require(resolve(__dirname, "config", "index.json"));
-let lib;
+const [
+    {host, port},
+    {receiveMsg, registerModule},
+    {initLib, send, unPackage}
+] = [
+    require(resolve(__dirname, "config", "index.json")),
+    require(resolve(__dirname, "cmdDisCenter")),
+    require(resolve(__dirname, "lib"))
+];
 const client = new Socket();
 
 client.connect(port, host, () => {
     console.log(`[${new Date()}][INFO]: CONNECTED TO ${host}:${port}`);
-    lib = require(resolve(__dirname, "lib"));
-    lib.initLib(client);
-    lib.send({cmd: "join", cmdseq: 1,});
+    initLib(client);
+    registerModule(resolve(__dirname, "config", "index.json"), send);
+    send({cmd: "join", cmdseq: 1,});
 });
 
 client.on("data", data => {
-    lib.receive(data);
+    receiveMsg(unPackage(data));
 });
 
 client.on("close", () => {
@@ -40,10 +47,6 @@ client.on("drain", () => {
 
 client.on("error", () => {
     console.log('Connection error');
-});
-
-client.on("lookup", () => {
-    console.log('Connection lookup');
 });
 
 client.on("timeout", () => {

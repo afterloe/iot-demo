@@ -57,15 +57,16 @@ const send = (cmd = {}) => {
  *
  * @param data
  */
-const receive = data => {
+const unPackage = data => {
     if (!data) {
         return ;
     }
 
     data = upPackage(data);
     console.log(`[${new Date()}][INFO]: RECEIVE MSG ${JSON.stringify(data)}`);
+    return data;
 };
 
-const _ = {initLib, send, receive};
+const _ = {initLib, send, unPackage};
 
 module.exports = _ ;
