@@ -14,10 +14,10 @@ const [
 ];
 
 const {version} = require(resolve(__dirname, "..", "config", "index.json"));
+const versionBuf = Buffer.from(version, "hex");
 
 module.exports = (json) => {
     const beginBuf = Buffer.from("0A", "hex");
-    const versionBuf = Buffer.from(version, "hex");
     let len = (JSON.stringify(json).length + 1 ).toString(16);
     while (len.length < 4) {
         len = "0" + len;

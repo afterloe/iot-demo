@@ -9,7 +9,5 @@
 
 module.exports = (json = {}, headerBuf = Buffer.from("")) => {
     const contentBuf = Buffer.from(JSON.stringify(json));
-    const buf = Buffer.concat([headerBuf, contentBuf, Buffer.alloc(1)]);
-    // console.log(`[${new Date()}][INFO]: SEND ${buf.toString("hex")}`);
-    return buf;
+    return Buffer.concat([headerBuf, contentBuf, Buffer.alloc(1)]);
 };
