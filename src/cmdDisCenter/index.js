@@ -37,7 +37,7 @@ const receiveMsg = _ => {
 };
 
 const defaultDisFun = cmd => {
-    console.log(`[${new Date()}][INFO][cmdDisCenter]: receive unknow robo cmd. ${JSON.stringify(cmd)}`);
+    console.log(`[${new Date()}][INFO][cmdDisCenter]: receive unknow lora cmd. ${JSON.stringify(cmd)}`);
 };
 
 // LORA 命令解析模块

@@ -1,85 +1,11 @@
 /usr/local/bin/node /project/node/iot-shenzhen/src/Launch.js
-[Mon Nov 27 2017 17:02:48 GMT+0800 (CST)][INFO]: CONNECTED TO msp02.claaiot.com:30003
-[Mon Nov 27 2017 17:02:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"join","cmdseq":1,"appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:02:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:02:48 GMT+0800 (CST)][INFO][join_ack]: JOIN SUCCESS ON 1 - JOIN ACCEPT
-[Mon Nov 27 2017 17:03:25 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:03:25 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a77006e00003c","payload":"WgIhAiQBNg","port":2,"packageLength":75}
-[Mon Nov 27 2017 17:03:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:03:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:04:02 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:04:02 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a77006e00003c","payload":"WgIhAiQBcw","port":2,"packageLength":75}
-[Mon Nov 27 2017 17:04:12 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:04:12 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a77006e00003c","payload":"WgIhAiQBJQ","port":2,"packageLength":75}
-[Mon Nov 27 2017 17:04:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:04:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:05:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:05:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:05:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:05:48 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCQ1JPsCAGb/9/9HAAsxLjAwNQAZDYMADAKX/xEyAQwMBiQIKAMCAg","port":10,"packageLength":120}
-[Mon Nov 27 2017 17:06:18 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:18 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"dev_join","deveui":"4a77006e00003c","ver":"1.0","class":"A","packageLength":69}
-[Mon Nov 27 2017 17:06:23 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:23 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a77006e00003c","payload":"WgEhAiQAAg","port":2,"packageLength":75}
-[Mon Nov 27 2017 17:06:23 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:23 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCUwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:06:30 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:30 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCUwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:06:37 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:37 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCUwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:06:44 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:44 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCUwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:06:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:06:51 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:51 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCYwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:06:58 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:06:58 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCYwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:07:05 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:07:05 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCYwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:07:11 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:07:11 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCYwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:07:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:07:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:08:02 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:08:02 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a77006e00003c","payload":"WgIhAiQBHg","port":2,"packageLength":75}
-[Mon Nov 27 2017 17:08:35 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:08:35 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a77006e00003c","payload":"WgEhAiQCAg","port":2,"packageLength":75}
-[Mon Nov 27 2017 17:08:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:08:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:09:15 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:15 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCYwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:09:22 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:22 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCcwAQE","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:09:27 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:27 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCgwAQA","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:09:34 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:34 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCgwAQA","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:09:41 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:41 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCgwAQA","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:09:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:09:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:48 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCgwAQA","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:09:55 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:09:55 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCgwAQA","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:10:02 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:10:02 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"updata","deveui":"4a770066002c74","payload":"SCgwAQA","port":10,"packageLength":73}
-[Mon Nov 27 2017 17:10:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:10:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:11:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:11:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:12:14 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:12:14 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"dev_join","deveui":"4a770066002c74","ver":"1.0","class":"A","packageLength":69}
-[Mon Nov 27 2017 17:12:28 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:12:28 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"dev_join","deveui":"4a770066002c74","ver":"1.0","class":"A","packageLength":69}
-[Mon Nov 27 2017 17:12:38 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:12:38 GMT+0800 (CST)][INFO][cmdDisCenter]: receive unknow robo cmd. {"cmd":"dev_join","deveui":"4a770066002c74","ver":"1.0","class":"A","packageLength":69}
-[Mon Nov 27 2017 17:12:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:12:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:13:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:13:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
-[Mon Nov 27 2017 17:14:48 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
-[Mon Nov 27 2017 17:14:48 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"heartbeat_ack","appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
+[Mon Nov 27 2017 17:21:19 GMT+0800 (CST)][INFO]: CONNECTED TO msp02.claaiot.com:30003
+[Mon Nov 27 2017 17:21:19 GMT+0800 (CST)][INFO][lib]: SEND MSG {"cmd":"join","cmdseq":1,"appnonce":1234,"challenge":"ABCDEF1234567890ABCDEF1234567890","appeui":"2c26c50526000001"}
+[Mon Nov 27 2017 17:21:19 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
+[Mon Nov 27 2017 17:21:19 GMT+0800 (CST)][INFO][join_ack]: JOIN SUCCESS ON 1 - JOIN ACCEPT
+[Mon Nov 27 2017 17:21:26 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
+004A77006E00003C WgIhAiQBNQ 2
+[Mon Nov 27 2017 17:21:39 GMT+0800 (CST)][INFO][lib]: RECEIVE REMOTE MSG.
+004A77006E00003C WgEhAiQCAg 2
 
 Process finished with exit code 130 (interrupted by signal 2: SIGINT)
