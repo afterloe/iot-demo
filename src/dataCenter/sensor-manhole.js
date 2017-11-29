@@ -9,7 +9,7 @@
 
 module.exports = (deveui, payload, port) => {
     const [data_buf, _] = [Buffer.from(payload, "base64"), {}];
-    console.log(data_buf);
+    console.log(`[${new Date()}][INFO][dataCenter][sensor-manhole]: RECEIVE BUFFER IS ${data_buf.toString("hex")}`);
     const [head_buf, dataType_buf, ver_buf, equipmentType_buf, voltage_buf, state_buf, angle_buf] = data_buf;
 
     // 如果数据包不是以 5a 开头

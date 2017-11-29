@@ -9,7 +9,7 @@
 
 module.exports = (deveui, payload, port) => {
     const [data_buf, _] = [Buffer.from(payload, "base64"), {}];
-    console.log(data_buf);
+    console.log(`[${new Date()}][INFO][dataCenter][sensor-geomagnetic]: RECEIVE BUFFER IS ${data_buf.toString("hex")}`);
     const [head_buf, stream_buf, cmd_buf, length_buf, content_buf] = data_buf;
 
     if (5 !== data_buf.length || 0x48 !== head_buf) {

@@ -8,10 +8,8 @@
 "use strict";
 
 module.exports = (deveui, payload, port) => {
-    console.log(deveui, payload, port);
     const [data_buf, _] = [Buffer.from(payload, "base64"), {}];
-    console.log(data_buf);
-
+    console.log(`[${new Date()}][INFO][dataCenter][sensor-temperature-humidity]: RECEIVE BUFFER IS ${data_buf.toString("hex")}`);
     const [head_buf, battery_buf, rssi_buf, temp_int_buf, temp_fra_buf, humidity_buf, angle_buf] = data_buf;
 
     if (!(head_buf & 0x20) || 8 !== data_buf.length) {
