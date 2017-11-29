@@ -16,7 +16,7 @@ const [
 const [
     {connection, register, send},
     {receiveMsg, registerModule},
-    {analysis},
+    {analysis, initAnalysisModule},
     {upLink, initialization}
 ] = [
     require(resolve(__dirname, "link")),
@@ -39,7 +39,7 @@ const msgDis = data => {
       }
       if (needAnalysis) {
           data = analysis(cmd); // 插件解析
-          upLink(data); // 上报数据
+          upLink(data).then(() => {}).catch(err => console.error(err)); // 上报数据
       }
   } catch (exception) {
 
@@ -48,11 +48,12 @@ const msgDis = data => {
 
 const config = require(resolve(__dirname, "config"));
 registerModule(); // 注册 LORA 解析模块
-initialization(require(resolve(__dirname, "config", "mq"))); // 初始化队列
+
+initialization(require(resolve(__dirname, "config", "mq")), initAnalysisModule).then(() => {
+
+}).catch(err => console.error(err));// 初始化队列
 
 connection(config).then(() => {
     register(msgDis); // 注册收到消息的回调函数
     send({cmd: "join", cmdseq: 1,});
-}).catch(err => {
-    throw err;
-});
+}).catch(err => console.error(err));

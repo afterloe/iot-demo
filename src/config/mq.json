@@ -10,6 +10,5 @@
     "enabled": false
   },
   "vhost": "/",
-  "exchange": "stash",
-  "queue": "location"
+  "exchange": "sensor"
 }

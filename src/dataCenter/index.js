@@ -22,11 +22,11 @@ const analysis = data => {
     const {deveui, payload, port} = data;
     let _ = {};
     if ("004A77006E00003C" === deveui) {
-        Object.assign(_, sensor_manhole(deveui, payload, port));
+        Object.assign(_, sensor_manhole(deveui, payload, port), {plugin: "sensor_manhole"});
     } else if ("004A770066002C74" === deveui) {
-        Object.assign(_, sensor_geomagnetic(deveui, payload, port));
+        Object.assign(_, sensor_geomagnetic(deveui, payload, port), {plugin: "sensor_geomagnetic"});
     } else if ("004A7702110600DD" === deveui) {
-        Object.assign(_, sensor_tem_hum(deveui, payload, port));
+        Object.assign(_, sensor_tem_hum(deveui, payload, port), {plugin: "sensor_tem_hum"});
     } else {
         console.error(`[${new Date()}][INFO][dataCenter]: CAN'T ANALYSIS ${JSON.stringify(data)}`);
     }
@@ -39,11 +39,11 @@ const analysis = data => {
 };
 
 const initAnalysisModule = () => {
-
+    return ["sensor_manhole", "sensor_geomagnetic", "sensor_tem_hum"];
 };
 
 const _ = {
-    analysis
+    analysis, initAnalysisModule
 };
 
 module.exports = _ ;
