@@ -17,9 +17,15 @@ module.exports = (deveui, payload, port) => {
         return _;
     }
 
-    const number = stream_buf;
-    const dataType = 0x30 === cmd_buf? "上报车辆信息": "未知包";
-    const data =  content_buf === 0x01? "有车": "无车";
+    Object.assign(_, {
+        packageStreamNum: stream_buf,
+        dataType: 0x30 === cmd_buf? "上报车辆信息": "未知包",
+        _success: true,
+        info: {
+            data: content_buf,
+            type: content_buf === 0x01? "有车": "无车"
+        }
+    });
 
-    return Object.assign(_, {number, dataType, data});
+    return _;
 };

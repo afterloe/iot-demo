@@ -13,19 +13,26 @@ module.exports = (deveui, payload, port) => {
     const [head_buf, dataType_buf, ver_buf, equipmentType_buf, voltage_buf, state_buf, angle_buf] = data_buf;
 
     // 如果数据包不是以 5a 开头
-    if (0x5a !== head_buf) {
+    if (0x5a !== head_buf || 7 !== data_buf.length) {
         console.log(`[${new Date()}][INFO][dataCenter][sensor-manhole]: DATA TYPE ERROR ${JSON.stringify({deveui, payload, port})}`);
         return _;
     }
 
-    const dataType = 0x02 === dataType_buf? "报警包": "心跳包";
-    const ver = ver_buf.toString(2);
-    const equipmentType = 0x02 === equipmentType_buf? "井盖终端": "错误设备";
-    const voltage = voltage_buf / 10;
-    const voltageUtil = "V";
-    const state = (state_buf & 0x01) ? "打开": "正常";
-    const angle = angle_buf;
-    const angleUtil = "°";
+    Object.assign(_, {
+        type: 0x02 === dataType_buf? "报警包": "心跳包",
+        ver: ver_buf.toString(2),
+        equipmentType: 0x02 === equipmentType_buf? "井盖终端": "未知设备",
+        voltage: {
+            data: voltage_buf / 10,
+            util: "V"
+        },
+        _success: true,
+        status: (state_buf & 0x01) ? "打开": "正常",
+        angle: {
+            data: angle_buf,
+            util: "°"
+        }
+    });
 
-    return Object.assign(_, {dataType, ver, equipmentType, voltage, voltageUtil, state, angle, angleUtil});
+    return _;
 };

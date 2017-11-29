@@ -9,7 +9,7 @@
 
 const cmd = {
     deveui: "004A7702110600DD",
-    payload: "IAEzFhhgSdo",
+    payload: "IAGGGko/Sdo",
     port: 25
 };
 
