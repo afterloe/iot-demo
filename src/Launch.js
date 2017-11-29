@@ -49,7 +49,7 @@ const msgDis = data => {
 const config = require(resolve(__dirname, "config"));
 registerModule(); // 注册 LORA 解析模块
 
-initialization(require(resolve(__dirname, "config", "mq")), initAnalysisModule).then(() => {
+initialization(require(resolve(__dirname, "config", "mq")), initAnalysisModule()).then(() => {
 
 }).catch(err => console.error(err));// 初始化队列
 

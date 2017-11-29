@@ -43,7 +43,7 @@ const initialization = (config) => {
 const pack = (cmd = {}) => {
     const challenge = generatorChallenge.invoke();
     Object.assign(cmd, challenge);
-    console.log(`[${new Date()}][INFO][link][lib]: PACK MSG. -> ${cmd}`);
+    console.log(`[${new Date()}][INFO][link][lib]: PACK MSG. -> ${JSON.stringify(cmd)}`);
     const headerBuf = generatorHeader.invoke(cmd);
     return generatorPackage.invoke(cmd, headerBuf);
 };
@@ -58,7 +58,7 @@ const unPack = data => {
         return {};
     }
     data = upPackage.invoke(data);
-    console.log(`[${new Date()}][INFO][link][lib]: UNPACK MSG. -> ${data}`);
+    console.log(`[${new Date()}][INFO][link][lib]: UNPACK MSG. -> ${JSON.stringify(data)}`);
     return data;
 };
 

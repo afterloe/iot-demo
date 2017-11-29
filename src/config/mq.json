@@ -1,6 +1,6 @@
 {
   "host": "10.10.1.211",
-  "port": 15672,
+  "port": 5672,
   "login": "rabbitmq",
   "password": "rabbitmq.ascs.tech",
   "connectionTimeout": 10000,
