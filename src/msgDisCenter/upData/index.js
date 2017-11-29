@@ -7,24 +7,22 @@
  */
 "use strict";
 
-const CMD = "heartbeat";
-const CMD_CALLBACK = "heartbeat_ack";
+const CMD = "updata";
 const NEXT_SUCCESSOR = "nextSuccessor";
 
 const _ = _ => {
-
-    const {cmd} = _ ;
+    const {cmd} = _;
 
     if (CMD !== cmd) {
         return NEXT_SUCCESSOR;
     }
 
+    const {deveui, payload, port} = _;
+
     return {
-        send: true,
-        cmd: {
-            cmd : CMD_CALLBACK,
-        }
-    };
+        needAnalysis: true,
+        cmd: {deveui: `00${deveui.toUpperCase()}`, payload, port}
+    }
 };
 
 module.exports = _ ;

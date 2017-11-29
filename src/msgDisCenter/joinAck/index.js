@@ -7,7 +7,7 @@
  */
 "use strict";
 
-const CMD = "updata";
+const CMD = "join_ack";
 const NEXT_SUCCESSOR = "nextSuccessor";
 
 const _ = _ => {
@@ -17,12 +17,13 @@ const _ = _ => {
         return NEXT_SUCCESSOR;
     }
 
-    const {deveui, payload, port} = _;
+    const {cmdseq, code, msg} = _;
 
-    return {
-        analysis: true,
-        cmd: {deveui: `00${deveui.toUpperCase()}`, payload, port}
+    if (200 !== code) {
+        console.error(`[${new Date()}][ERROR][msgDisCenter][${CMD}]: JOIN FAILED ON ${cmdseq} - ${msg}`);
     }
+
+    console.log(`[${new Date()}][INFO][msgDisCenter][${CMD}]: JOIN SUCCESS ON ${cmdseq} - ${msg}`);
 };
 
 module.exports = _ ;

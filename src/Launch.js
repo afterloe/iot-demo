@@ -9,48 +9,41 @@
 
 const [
     {resolve},
-    {Socket},
 ] = [
     require("path"),
-    require("net"),
 ];
 
 const [
-    {host, port},
+    {connection, register, send},
     {receiveMsg, registerModule},
     {analysis},
-    {initLib, send, unPackage},
 ] = [
-    require(resolve(__dirname, "config", "index.json")),
-    require(resolve(__dirname, "cmdDisCenter")),
-    require(resolve(__dirname, "dataCenter")),
-    require(resolve(__dirname, "lib"))
+    require(resolve(__dirname, "link")),
+    require(resolve(__dirname, "msgDisCenter")),
+    require(resolve(__dirname, "dataCenter"))
 ];
-const client = new Socket();
 
-client.connect(port, host, () => {
-    console.log(`[${new Date()}][INFO]: CONNECTED TO ${host}:${port}`);
-    initLib(client);
-    registerModule(resolve(__dirname, "config", "index.json"), {send, analysis});
+const msgDis = data => {
+  data = receiveMsg(data);
+  try {
+      const {needSend, cmd, needAnalysis} = data;
+      if (needSend) {
+          send(cmd);
+      }
+      if (needAnalysis) {
+          analysis(cmd);
+      }
+  } catch (exception) {
+
+  }
+};
+
+const config = require(resolve(__dirname, "config"));
+registerModule(); // 注册 LORA 解析模块
+
+connection(config).then(() => {
+    register(msgDis); // 注册收到消息的回调函数
     send({cmd: "join", cmdseq: 1,});
-});
-
-client.on("data", data => {
-    receiveMsg(unPackage(data));
-});
-
-client.on("close", () => {
-    console.error(`[${new Date()}][ERROR]: CONNECTION DISCONNECT`);
-});
-
-client.on("drain", () => {
-    console.log('Connection drain');
-});
-
-client.on("error", () => {
-    console.log('Connection error');
-});
-
-client.on("timeout", () => {
-    console.log('Connection timeout');
+}).catch(err => {
+    throw err;
 });

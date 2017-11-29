@@ -7,16 +7,14 @@
  */
 "use strict";
 
-const [
-    {resolve},
-] = [
-    require("path"),
-];
+let versionBuf;
 
-const {version} = require(resolve(__dirname, "..", "config", "index.json"));
-const versionBuf = Buffer.from(version, "hex");
+const init = config => {
+    let {version = "0102"} = config;
+    versionBuf = Buffer.from(version, "hex");
+};
 
-module.exports = (json) => {
+const invoke = json => {
     const beginBuf = Buffer.from("0A", "hex");
     let len = (JSON.stringify(json).length + 1 ).toString(16);
     while (len.length < 4) {
@@ -25,3 +23,7 @@ module.exports = (json) => {
     const lenBuf = Buffer.from(len, "hex");
     return Buffer.concat([beginBuf, versionBuf, lenBuf]);
 };
+
+const _ = {init, invoke};
+
+module.exports = _;

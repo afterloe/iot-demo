@@ -1,8 +1,8 @@
 {
   "name": "iot-shenzhen",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "智慧园区相关项目接入iot",
-  "main": "index.js",
+  "main": "Launch.js",
   "scripts": {
     "test": "make test"
   },
@@ -11,8 +11,11 @@
     "url": "ssh://git@github.com:afterloe/iot-demo.git"
   },
   "keywords": [
-    "io"
+    "iot"
   ],
   "author": "afterloe <lm6289511@gmail.com>",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "amqp": "^0.2.6"
+  }
 }

@@ -25,15 +25,14 @@ const [
     require(resolve(__dirname, "upPackage")),
 ];
 
-let client; // 发送对象
-
 /**
  *  初始化工具包
  *
- * @param __client
+ * @param config
  */
-const initLib = __client => {
-    client = __client;
+const initialization = (config) => {
+    generatorChallenge.init(config);
+    generatorHeader.init(config);
 };
 
 /**
@@ -41,15 +40,12 @@ const initLib = __client => {
  *
  * @param cmd 指令对象
  */
-const send = (cmd = {}) => {
-    const challenge = generatorChallenge();
+const pack = (cmd = {}) => {
+    const challenge = generatorChallenge.invoke();
     Object.assign(cmd, challenge);
-    console.log(`[${new Date()}][INFO][lib]: SEND MSG ${JSON.stringify(cmd)}`);
-    const headerBuf = generatorHeader(cmd);
-    if (!client) {
-        throw new Error("lib didn't init.");
-    }
-    client.write(generatorPackage(cmd, headerBuf));
+    console.log(`[${new Date()}][INFO][link][lib]: PACK MSG. -> ${cmd}`);
+    const headerBuf = generatorHeader.invoke(cmd);
+    return generatorPackage.invoke(cmd, headerBuf);
 };
 
 /**
@@ -57,16 +53,15 @@ const send = (cmd = {}) => {
  *
  * @param data
  */
-const unPackage = data => {
+const unPack = data => {
     if (!data) {
-        return ;
+        return {};
     }
-
-    data = upPackage(data);
-    console.log(`[${new Date()}][INFO][lib]: RECEIVE REMOTE MSG.`);
+    data = upPackage.invoke(data);
+    console.log(`[${new Date()}][INFO][link][lib]: UNPACK MSG. -> ${data}`);
     return data;
 };
 
-const _ = {initLib, send, unPackage};
+const _ = {initialization, pack, unPack};
 
 module.exports = _ ;

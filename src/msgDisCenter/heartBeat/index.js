@@ -7,23 +7,24 @@
  */
 "use strict";
 
-const CMD = "join_ack";
+const CMD = "heartbeat";
+const CMD_CALLBACK = "heartbeat_ack";
 const NEXT_SUCCESSOR = "nextSuccessor";
 
 const _ = _ => {
-    const {cmd} = _;
+
+    const {cmd} = _ ;
 
     if (CMD !== cmd) {
         return NEXT_SUCCESSOR;
     }
 
-    const {cmdseq, code, msg} = _;
-
-    if (200 !== code) {
-        throw new Error("join remote host failed.");
-    }
-
-    console.log(`[${new Date()}][INFO][${CMD}]: JOIN SUCCESS ON ${cmdseq} - ${msg}`);
+    return {
+        needSend: true,
+        cmd: {
+            cmd : CMD_CALLBACK,
+        }
+    };
 };
 
 module.exports = _ ;

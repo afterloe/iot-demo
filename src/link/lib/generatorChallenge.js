@@ -7,17 +7,20 @@
  */
 "use strict";
 
-const [
-    {resolve},
-] = [
-    require("path"),
-];
-
-const {eui} = require(resolve(__dirname, "..", "config", "index.json"));
-
 const appnonce = 1234;
 const challenge= "ABCDEF1234567890ABCDEF1234567890";
 
-module.exports = () => {
-  return {appnonce, challenge, appeui: eui};
+let appeui;
+
+const init = config => {
+    let {eui = ""} = config;
+    appeui = eui;
 };
+
+const invoke = () => {
+    return {appnonce, challenge, appeui};
+};
+
+const _ = {init, invoke};
+
+module.exports = _ ;
