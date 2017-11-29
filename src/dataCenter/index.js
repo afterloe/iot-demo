@@ -26,7 +26,7 @@ const analysis = data => {
     } else if ("004A770066002C74" === deveui) {
         const data = sensor_geomagnetic(deveui, payload, port);
         console.log(data);
-    } else if ("004A770066002C74" === deveui) {
+    } else if ("004A7702110600DD" === deveui) {
         const data = sensor_tem_hum(deveui, payload, port);
         console.log(data);
     } else {

@@ -8,9 +8,9 @@
 "use strict";
 
 const cmd = {
-    deveui: "004A770066002C74",
-    payload: "SD8wAQE",
-    port: 10
+    deveui: "004A7702110600DD",
+    payload: "IAEzFhhgSdo",
+    port: 25
 };
 
 const {deveui, payload, port} = cmd;
