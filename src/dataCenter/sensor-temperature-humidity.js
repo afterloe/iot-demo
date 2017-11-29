@@ -29,6 +29,11 @@ module.exports = (deveui, payload, port) => {
             util: "-1dBm"
         },
         _success: true,
+        sensor: {
+            type: "温湿度传感器",
+            name: "Temperature and Humidity LoRaWAN Sensor",
+            deveui
+        },
         temperature: {
             flag: (temp_fra_buf & 0x80)? "零下":"零上",
             data: temp_int_buf + "." + temp_fra_buf,

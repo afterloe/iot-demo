@@ -27,6 +27,11 @@ module.exports = (deveui, payload, port) => {
             util: "V"
         },
         _success: true,
+        sensor: {
+            type: "陀螺仪传感器",
+            name: "LoRaWan井盖终端",
+            deveui
+        },
         status: (state_buf & 0x01) ? "打开": "正常",
         angle: {
             data: angle_buf,

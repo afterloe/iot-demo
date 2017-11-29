@@ -21,6 +21,11 @@ module.exports = (deveui, payload, port) => {
         packageStreamNum: stream_buf,
         dataType: 0x30 === cmd_buf? "上报车辆信息": "未知包",
         _success: true,
+        sensor: {
+            type: "磁敏传感器",
+            name: "Parking埋入式地磁车辆检测器",
+            deveui
+        },
         info: {
             data: content_buf,
             type: content_buf === 0x01? "有车": "无车"
