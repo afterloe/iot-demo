@@ -27,6 +27,7 @@ module.exports = (deveui, payload, port) => {
             util: "-1dBm"
         },
         _success: true,
+        _time: new Date().toLocaleDateString(),
         sensor: {
             type: "温湿度传感器",
             name: "Temperature and Humidity LoRaWAN Sensor",

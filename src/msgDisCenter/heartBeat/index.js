@@ -21,6 +21,9 @@ const _ = _ => {
 
     return {
         needSend: true,
+        needUpLink: true,
+        plugin: "heartBeat",
+        _time: new Date().toLocaleDateString(),
         cmd: {
             cmd : CMD_CALLBACK,
         }

@@ -33,9 +33,12 @@ const [
 const msgDis = data => {
   data = receiveMsg(data); // 消息分拨
   try {
-      const {needSend, cmd, needAnalysis} = data; // 回收分拨后的信息进行处理
+      const {needSend, cmd, needAnalysis, needUpLink} = data; // 回收分拨后的信息进行处理
       if (needSend) {
           send(cmd); // 响应
+      }
+      if (needUpLink) {
+          upLink(data).then(() => {}).catch(err => console.error(err)); // 上报数据
       }
       if (needAnalysis) {
           data = analysis(cmd); // 插件解析
@@ -49,7 +52,10 @@ const msgDis = data => {
 const config = require(resolve(__dirname, "config"));
 registerModule(); // 注册 LORA 解析模块
 
-initialization(require(resolve(__dirname, "config", "mq")), initAnalysisModule()).then(() => {
+const queueList = initAnalysisModule();
+queueList.push("heartBeat");
+
+initialization(require(resolve(__dirname, "config", "mq")), queueList).then(() => {
 
 }).catch(err => console.error(err));// 初始化队列
 

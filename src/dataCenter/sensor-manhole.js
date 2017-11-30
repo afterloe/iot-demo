@@ -27,6 +27,7 @@ module.exports = (deveui, payload, port) => {
             util: "V"
         },
         _success: true,
+        _time: new Date().toLocaleDateString(),
         sensor: {
             type: "陀螺仪传感器",
             name: "LoRaWan井盖终端",
