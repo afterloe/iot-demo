@@ -20,10 +20,10 @@ const _ = _ => {
     const {cmdseq, code, msg} = _;
 
     if (200 !== code) {
-        throw new Error("join remote host failed.");
+        console.error(`[${new Date()}][ERROR][msgDisCenter][${CMD}]: JOIN FAILED ON ${cmdseq} - ${msg}`);
     }
 
-    console.log(`[${new Date()}][INFO][${CMD}]: JOIN SUCCESS ON ${cmdseq} - ${msg}`);
+    console.log(`[${new Date()}][INFO][msgDisCenter][${CMD}]: JOIN SUCCESS ON ${cmdseq} - ${msg}`);
 };
 
 module.exports = _ ;

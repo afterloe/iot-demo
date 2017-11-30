@@ -7,7 +7,11 @@
  */
 "use strict";
 
-module.exports = (json = {}, headerBuf = Buffer.from("")) => {
+const invoke = (json = {}, headerBuf = Buffer.from("")) => {
     const contentBuf = Buffer.from(JSON.stringify(json));
     return Buffer.concat([headerBuf, contentBuf, Buffer.alloc(1)]);
 };
+
+const _ = {invoke};
+
+module.exports = _;

@@ -7,14 +7,27 @@
  */
 "use strict";
 
+const [pluginType, pluginName] = ["磁敏传感器", "Parking埋入式地磁车辆检测器"];
+
 module.exports = (deveui, payload, port) => {
-    const [data_buf, _] = [Buffer.from(payload, "base64"), {}];
-    console.log(data_buf);
+    const [data_buf, _] = [Buffer.from(payload, "base64"), {
+        _time: new Date().toLocaleString(),
+        sensor: {
+            type: pluginType,
+            name: pluginName,
+            deveui
+        }
+    }];
+    console.log(`[${new Date()}][INFO][dataCenter][sensor-geomagnetic]: RECEIVE BUFFER IS ${data_buf.toString("hex")}`);
     const [head_buf, stream_buf, cmd_buf, length_buf, content_buf] = data_buf;
 
     if (5 !== data_buf.length || 0x48 !== head_buf) {
         console.log(`[${new Date()}][INFO][dataCenter][sensor-geomagnetic]: DATA TYPE ERROR ${JSON.stringify({deveui, payload, port})}`);
-        return _;
+        return Object.assign(_, {
+            plugin: "unknow_buf",
+            payload,
+            port
+        });
     }
 
     Object.assign(_, {

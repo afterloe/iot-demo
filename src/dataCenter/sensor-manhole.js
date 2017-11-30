@@ -7,15 +7,28 @@
  */
 "use strict";
 
+const [pluginType, pluginName] = ["陀螺仪传感器", "LoRaWan井盖终端"];
+
 module.exports = (deveui, payload, port) => {
-    const [data_buf, _] = [Buffer.from(payload, "base64"), {}];
-    console.log(data_buf);
+    const [data_buf, _] = [Buffer.from(payload, "base64"), {
+        _time: new Date().toLocaleString(),
+        sensor: {
+            type: pluginType,
+            name: pluginName,
+            deveui
+        }
+    }];
+    console.log(`[${new Date()}][INFO][dataCenter][sensor-manhole]: RECEIVE BUFFER IS ${data_buf.toString("hex")}`);
     const [head_buf, dataType_buf, ver_buf, equipmentType_buf, voltage_buf, state_buf, angle_buf] = data_buf;
 
     // 如果数据包不是以 5a 开头
     if (0x5a !== head_buf || 7 !== data_buf.length) {
         console.log(`[${new Date()}][INFO][dataCenter][sensor-manhole]: DATA TYPE ERROR ${JSON.stringify({deveui, payload, port})}`);
-        return _;
+        return Object.assign(_, {
+            plugin: "unknow_buf",
+            payload,
+            port
+        });
     }
 
     Object.assign(_, {

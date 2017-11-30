@@ -20,7 +20,7 @@ const _ = _ => {
     const {deveui, payload, port} = _;
 
     return {
-        analysis: true,
+        needAnalysis: true,
         cmd: {deveui: `00${deveui.toUpperCase()}`, payload, port}
     }
 };

@@ -7,7 +7,7 @@
  */
 "use strict";
 
-module.exports = data => {
+const invoke = data => {
     if (0x0A !== data[0]) {
         console.log('数据包不是已0A开头');
         return;
@@ -23,8 +23,12 @@ module.exports = data => {
         data = JSON.parse(dataBuf.toString());
         Object.assign(result, data, {packageLength: len});
     } catch (exception) {
-        console.log(`[${new Date()}][ERROR]: ${exception.message}`);
+        console.log(`[${new Date()}][ERROR][lib]: ${exception.message}`);
     }
 
     return result;
 };
+
+const _ = {invoke};
+
+module.exports = _;

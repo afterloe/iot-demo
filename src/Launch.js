@@ -9,48 +9,57 @@
 
 const [
     {resolve},
-    {Socket},
 ] = [
     require("path"),
-    require("net"),
 ];
 
 const [
-    {host, port},
+    {connection, register, send},
     {receiveMsg, registerModule},
-    {analysis},
-    {initLib, send, unPackage},
+    {analysis, initAnalysisModule},
+    {upLink, initialization}
 ] = [
-    require(resolve(__dirname, "config", "index.json")),
-    require(resolve(__dirname, "cmdDisCenter")),
+    require(resolve(__dirname, "link")),
+    require(resolve(__dirname, "msgDisCenter")),
     require(resolve(__dirname, "dataCenter")),
-    require(resolve(__dirname, "lib"))
+    require(resolve(__dirname, "queue")),
 ];
-const client = new Socket();
 
-client.connect(port, host, () => {
-    console.log(`[${new Date()}][INFO]: CONNECTED TO ${host}:${port}`);
-    initLib(client);
-    registerModule(resolve(__dirname, "config", "index.json"), {send, analysis});
+/**
+ * 消息处理
+ *
+ * @param data
+ */
+const msgDis = data => {
+  data = receiveMsg(data); // 消息分拨
+  try {
+      const {needSend, cmd, needAnalysis, needUpLink} = data; // 回收分拨后的信息进行处理
+      if (needSend) {
+          send(cmd); // 响应
+      }
+      if (needUpLink) {
+          upLink(data).then(() => {}).catch(err => console.error(err)); // 上报数据
+      }
+      if (needAnalysis) {
+          data = analysis(cmd); // 插件解析
+          upLink(data).then(() => {}).catch(err => console.error(err)); // 上报数据
+      }
+  } catch (exception) {
+
+  }
+};
+
+const config = require(resolve(__dirname, "config"));
+registerModule(); // 注册 LORA 解析模块
+
+const queueList = initAnalysisModule();
+queueList.push("sensor_hearbeat");
+
+initialization(require(resolve(__dirname, "config", "mq")), queueList).then(() => {
+
+}).catch(err => console.error(err));// 初始化队列
+
+connection(config).then(() => {
+    register(msgDis); // 注册收到消息的回调函数
     send({cmd: "join", cmdseq: 1,});
-});
-
-client.on("data", data => {
-    receiveMsg(unPackage(data));
-});
-
-client.on("close", () => {
-    console.error(`[${new Date()}][ERROR]: CONNECTION DISCONNECT`);
-});
-
-client.on("drain", () => {
-    console.log('Connection drain');
-});
-
-client.on("error", () => {
-    console.log('Connection error');
-});
-
-client.on("timeout", () => {
-    console.log('Connection timeout');
-});
+}).catch(err => console.error(err));
