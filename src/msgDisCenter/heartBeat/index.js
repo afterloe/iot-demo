@@ -23,6 +23,7 @@ const _ = _ => {
         needSend: true,
         needUpLink: true,
         plugin: "sensor_hearbeat",
+        _success: true,
         _time: new Date().toLocaleString(),
         cmd: {
             cmd : CMD_CALLBACK,

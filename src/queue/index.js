@@ -24,7 +24,10 @@ const queueConfig = {
 let queueConnection, queueExchange;
 
 const upLink = data => {
-    const {plugin} = data;
+    const {plugin, _success} = data;
+    if (!_success || !plugin) {
+        return Promise.reject();
+    }
     console.log(`[${new Date()}][INFO][queue]: SEND ${JSON.stringify(data)} TO ${plugin}`);
     return new Promise((solve, reject) => {
         queueExchange.publish(plugin, data, {confirm: true}, err => {
