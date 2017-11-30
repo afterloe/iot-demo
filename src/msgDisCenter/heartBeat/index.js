@@ -22,8 +22,8 @@ const _ = _ => {
     return {
         needSend: true,
         needUpLink: true,
-        plugin: "heartBeat",
-        _time: new Date().toLocaleDateString(),
+        plugin: "sensor_hearbeat",
+        _time: new Date().toLocaleString(),
         cmd: {
             cmd : CMD_CALLBACK,
         }

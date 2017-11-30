@@ -53,7 +53,7 @@ const config = require(resolve(__dirname, "config"));
 registerModule(); // 注册 LORA 解析模块
 
 const queueList = initAnalysisModule();
-queueList.push("heartBeat");
+queueList.push("sensor_hearbeat");
 
 initialization(require(resolve(__dirname, "config", "mq")), queueList).then(() => {
 
