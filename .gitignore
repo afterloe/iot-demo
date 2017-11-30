@@ -5,6 +5,7 @@ logs
 .idea
 npm-debug.log*
 _book
+build.sh
 .idea
 yarn-debug.log*
 yarn-error.log*
