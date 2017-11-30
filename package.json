@@ -1,6 +1,6 @@
 {
   "name": "iot-shenzhen",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "智慧园区相关项目接入iot",
   "main": "index.js",
   "scripts": {
