@@ -24,8 +24,8 @@ const queueConfig = {
 let queueConnection, queueExchange;
 
 const upLink = data => {
-    const {plugin, _success} = data;
-    if (!_success || !plugin) {
+    const {plugin} = data;
+    if (!plugin) {
         return Promise.reject();
     }
     console.log(`[${new Date()}][INFO][queue]: SEND ${JSON.stringify(data)} TO ${plugin}`);

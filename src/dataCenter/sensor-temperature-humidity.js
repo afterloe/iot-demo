@@ -7,14 +7,27 @@
  */
 "use strict";
 
+const [pluginType, pluginName] = ["温湿度传感器", "Temperature and Humidity LoRaWAN Sensor"];
+
 module.exports = (deveui, payload, port) => {
-    const [data_buf, _] = [Buffer.from(payload, "base64"), {}];
+    const [data_buf, _] = [Buffer.from(payload, "base64"), {
+        _time: new Date().toLocaleString(),
+        sensor: {
+            type: pluginType,
+            name: pluginName,
+            deveui
+        },
+    }];
     console.log(`[${new Date()}][INFO][dataCenter][sensor-temperature-humidity]: RECEIVE BUFFER IS ${data_buf.toString("hex")}`);
     const [head_buf, battery_buf, rssi_buf, temp_int_buf, temp_fra_buf, humidity_buf, angle_buf] = data_buf;
 
     if (!(head_buf & 0x20) || 8 !== data_buf.length) {
         console.log(`[${new Date()}][INFO][dataCenter][sensor-temperature-humidity]: DATA TYPE ERROR ${JSON.stringify({deveui, payload, port})}`);
-        return {};
+        return Object.assign(_, {
+            plugin: "unknow_buf",
+            payload,
+            port
+        });
     }
 
     Object.assign(_, {
@@ -27,15 +40,9 @@ module.exports = (deveui, payload, port) => {
             util: "-1dBm"
         },
         _success: true,
-        _time: new Date().toLocaleString(),
-        sensor: {
-            type: "温湿度传感器",
-            name: "Temperature and Humidity LoRaWAN Sensor",
-            deveui
-        },
         temperature: {
-            flag: (temp_fra_buf & 0x80)? "零下":"零上",
-            data: temp_int_buf + "." + temp_fra_buf,
+            flag: (temp_int_buf & 0x80)? "零下":"零上",
+            data: Number.parseFloat(temp_int_buf + "." + temp_fra_buf),
             util: "℃"
         },
         humidity: {
