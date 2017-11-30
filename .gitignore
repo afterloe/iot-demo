@@ -1,8 +1,10 @@
 # Logs
 logs
 *.log
+.iot-shenzhen
 .idea
 npm-debug.log*
+_book
 .idea
 yarn-debug.log*
 yarn-error.log*
