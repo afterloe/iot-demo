@@ -37,6 +37,7 @@ clean: .$(PROJECT_NAME)
 build: src node_modules
 	mkdir .$(PROJECT_NAME)
 	cp package.json .$(PROJECT_NAME)
+	cp Dockerfile .$(PROJECT_NAME)
 	@babel $< -d .$(PROJECT_NAME)/node_modules
 	mv .$(PROJECT_NAME)/node_modules/Launch.js .$(PROJECT_NAME)
 	cp -R src/config .$(PROJECT_NAME)
