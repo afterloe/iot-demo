@@ -2,6 +2,7 @@
 logs
 *.log
 .iot-shenzhen
+build.sh
 .idea
 npm-debug.log*
 _book
