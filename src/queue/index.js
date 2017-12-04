@@ -10,7 +10,7 @@
 const amqp = require('amqp');
 
 const exchangeConfig = {
-    type: "fanout",
+    type: "direct",
     durable: true,
     autoDelete: false,
     confirm: true
