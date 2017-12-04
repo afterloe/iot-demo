@@ -19,10 +19,10 @@ const [
     {analysis, initAnalysisModule},
     {upLink, initialization}
 ] = [
-    require(resolve(__dirname, "link")),
-    require(resolve(__dirname, "msgDisCenter")),
-    require(resolve(__dirname, "dataCenter")),
-    require(resolve(__dirname, "queue")),
+    require("link"),
+    require("msgDisCenter"),
+    require("dataCenter"),
+    require("queue"),
 ];
 
 /**
