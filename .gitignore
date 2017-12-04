@@ -1,9 +1,12 @@
 # Logs
 logs
 *.log
+.iot-shenzhen
 build.sh
 .idea
 npm-debug.log*
+_book
+build.sh
 .idea
 yarn-debug.log*
 yarn-error.log*
