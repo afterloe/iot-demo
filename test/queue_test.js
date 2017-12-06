@@ -27,7 +27,7 @@ const dataList = [{
 
 queue.initialization(
     require(resolve(__dirname, "..", "src", "config", "mq.json")), dataCenter.initAnalysisModule()).then(() => {
-    let n = 10;
+    let n = 5000;
     while (n >= 0 ) {
         let number = Math.round(Math.random() * 2);
         const data = dataCenter.analysis(dataList[number]);
