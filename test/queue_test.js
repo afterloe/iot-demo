@@ -27,10 +27,14 @@ const dataList = [{
 
 queue.initialization(
     require(resolve(__dirname, "..", "src", "config", "mq.json")), dataCenter.initAnalysisModule()).then(() => {
-    let number = Math.round(Math.random() * 2);
-    const data = dataCenter.analysis(dataList[number]);
-    queue.upLink(data).then(() => {
-        process.exit(0);
-    }).catch(err => process.exit(1000)); // 上报数据
+    let n = 5000;
+    while (n >= 0 ) {
+        let number = Math.round(Math.random() * 2);
+        const data = dataCenter.analysis(dataList[number]);
+        n--;
+        queue.upLink(data).then(() => {
+            process.exit(0);
+        }).catch(err => console.log(err)); // 上报数据
+    }
 }).catch(err => process.exit(1));// 初始化队列
 
