@@ -81,6 +81,13 @@ const connection = config => new Promise((solve, reject) => {
     client.on("timeout", () => {
         console.error(`[${new Date()}][ERROR][link]: CONNECTION TIMEOUT`);
     });
+
+    client.setTimeout(1000 * 60 * 3);
+
+    client.on("timeout", () => {
+        console.log(`remote host is closed! restart server`);
+        process.exit(1);
+    });
 });
 
 const _ = {
