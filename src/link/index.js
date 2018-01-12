@@ -67,6 +67,7 @@ const connection = config => new Promise((solve, reject) => {
 
     client.on("close", () => {
         console.error(`[${new Date()}][INFO][link]: CONNECTION DISCONNECT`);
+        process.exit(1);
     });
 
     client.on("drain", () => {
